@@ -9,8 +9,11 @@ router.get('/', function(req, res, next){
         console.error('Error fetching todos:', err);
         return res.status(500).send('Error fetching todos');
       }
-      res.render('index', { title: 'My Simple TODO', todos: results });
-    });
+      res.render('index', { 
+        title: 'Downtown Donuts', 
+        todos: results, 
+        dark_bg_logo: 'images/dark_bg_logo.png',
+        dropdown: 'images/dropdown.png'});    });
   } catch (error) {
     console.error('Error fetching items:', error);
     res.status(500).send('Error fetching items');
@@ -52,5 +55,6 @@ router.post('/delete', function (req, res, next) {
         res.status(500).send('Error deleting todo:');
     }
 });
+
 
 module.exports = router;

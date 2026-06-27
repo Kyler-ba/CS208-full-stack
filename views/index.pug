@@ -1,23 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  ol
-  each val in todos
-    li
-      span= val.task + ' - '
-      if val.completed > 0
-        span Completed
-      else
-        span Not Completed
-      form(method='POST' action='/delete')
-        input(type='hidden', name='id', value=val.id)
-        button(type='submit') Delete
+  img(class= "header-logo" src=dark_bg_logo)
 
-  hr
-  h2 Add a new task
-  form(method='POST' action='/create')
-    label(for='task') Task:
-    input(type='text', name='task', id='task', required)
-    button(type='submit') Create Task
+  script(src="/javascripts/sidemenu.js" defer)
+  img#menu-btn(src=dropdown alt="Open Menu" style="cursor: pointer;")
+
+  //- The Side Menu
+  #my-sidebar.sidebar
+    //- FIX: Added id="close-btn" and removed old inline onclick
+    a#close-btn.close-btn(href="javascript:void(0)") &times;
+    a(href="#") Link 1
+    a(href="#") Link 2
+    a(href="#") Link 3
+  
+

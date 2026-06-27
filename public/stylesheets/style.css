@@ -1,8 +1,53 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+.header-logo{
+  display: block;
+  position:fixed;
+  max-width: 100%;
+  max-height: 125px;
+
+  padding-left: 50%;
+  padding-right: 50%;
+  background-color: #10291d;
+
+  border-bottom: 5px solid #F7C64A;
+}
+
+img[alt="Open Menu"]{
+  position: fixed;
+  display: block;
+
+  margin-top: 30px;
+  margin-left: 35px;
+
+  max-width: 7%;
+  max-height: 7%;
+} 
+
+.sidebar .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 36px;
+  color: #818181;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar .close-btn:hover {
+  color: #f1f1f1;
 }
