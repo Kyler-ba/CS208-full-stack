@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+router.get('/favicon.ico', (req, res) => res.status(204).end()); 
+
 
 /* GET home page. */
 router.get('/', function(req, res, next){
@@ -17,6 +19,49 @@ router.get('/', function(req, res, next){
   } catch (error) {
     console.error('Error fetching items:', error);
     res.status(500).send('Error fetching items');
+  }
+});
+
+/* GET menu page. */
+router.get('/menu', function(req, res, next) {
+  try {
+    // Render the 'menu.pug' file located in your views folder
+    res.render('menu', { 
+      title: 'Our Menu - Downtown Donuts',
+      dark_bg_logo: '/images/dark_bg_logo.png',
+      dropdown: '/images/dropdown.png'
+    });
+  } catch (error) {
+    console.error('Error loading menu page:', error);
+    res.status(500).send('Error loading menu page');
+  }
+});
+
+router.get('/about', function(req, res, next) {
+  try {
+    // Render the 'menu.pug' file located in your views folder
+    res.render('about', { 
+      title: 'About Us - Downtown Donuts',
+      dark_bg_logo: '/images/dark_bg_logo.png',
+      dropdown: '/images/dropdown.png'
+    });
+  } catch (error) {
+    console.error('Error loading about page:', error);
+    res.status(500).send('Error loading about page');
+  }
+});
+
+router.get('/reviews', function(req, res, next) {
+  try {
+    // Render the 'menu.pug' file located in your views folder
+    res.render('reviews', { 
+      title: 'reviews - Downtown Donuts',
+      dark_bg_logo: '/images/dark_bg_logo.png',
+      dropdown: '/images/dropdown.png'
+    });
+  } catch (error) {
+    console.error('Error loading reviews page:', error);
+    res.status(500).send('Error loading reviews page');
   }
 });
 

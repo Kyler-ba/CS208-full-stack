@@ -1,30 +1,35 @@
+* {
+  font-family: 'Montserrat Regular';
+}
+
 body {
   margin: 0;
   padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Montserrat Regular', Helvetica, Arial, sans-serif;
 
   overflow-x: hidden;
   width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 a {
   color: #00B7FF;
+  margin: 30px;
+  font-size: 40px;
 }
 
 
-.header-logo{
+#header-logo{
   display: block;
   position:fixed;
   max-width: 100%;
   max-height: 125px;
 
-  padding-left: 50%;
+  padding-left: 45%;
   padding-right: 50%;
   background-color: #10291d;
 
   border-bottom: 5px solid #F7C64A;
+  z-index:1;
 }
 
 img[alt="Open Menu"]{
@@ -36,18 +41,169 @@ img[alt="Open Menu"]{
 
   max-width: 7%;
   max-height: 7%;
+
+  z-index: 1;
 } 
 
-.sidebar .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 36px;
-  color: #818181;
-  text-decoration: none;
-  cursor: pointer;
+.sidebar {
+  height: 100%;
+  width: 0; /* Starts hidden */
+  position: fixed;
+  z-index: 9999; /* Sits on top of all other content */
+  top: 0;
+  left: 0;
+  background-color: #10291d; /* Dark background matching your theme */
+  overflow-x: hidden; /* Hide horizontal scrollbar when width is 0 */
+  transition: 0.3s; /* Smooth sliding transition effect */
+  padding-top: 60px;
+  margin-top: 125px;
+  border-top: 5px solid #F7C64A;
+  border-right: 3px solid #F7C64A;
 }
 
-.sidebar .close-btn:hover {
-  color: #f1f1f1;
+/* Style the links inside the sidebar */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #F7F7F7;
+  display: block;
+  transition: 0.3s;
+  
+}
+
+/* Change link color on hover */
+.sidebar a:hover {
+  color: #F7C64A;
+  text-decoration: underline;
+}
+
+/* Position and style the close button */
+.sidebar .close-btn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.image-container {  
+  margin-top: 130px;
+  display: inline-block; /* Keeps the container the same size as the image */
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-container img {
+  display: block;
+  width: 100%; /* Or your desired width */
+  height: 811px;
+  z-index: 2;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;          /* Positions the text vertically */
+  left: 50%;         /* Positions the text horizontally */
+  transform: translate(-50%, -50%); /* Perfectly centers the text */
+  color: #F7F7F7;      /* Ensures the text is visible */
+  font-size: 71px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* Helps text stand out */
+  background-color: #7e7f9a50;
+}
+
+h2{
+  font-size: 50px;
+  text-decoration: underline;
+  text-align: center;
+}
+
+/* --- Content Layout Positioning --- */
+.menu-container {
+  max-width: 1200px;
+  /* 160px top margin ensures it sits perfectly below your 125px fixed header */
+  margin: 0px auto 40px auto; 
+  padding: 150px 20px;
+  box-sizing: border-box;
+}
+
+.menu-heading {
+  margin-top: 0;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: black; /* Matches your dark green brand color */
+  text-align: center;
+}
+
+/* --- The Grid Layout --- */
+.menu-grid {
+  display: grid;
+  /* Automatically fits as many cards per row as space allows */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+/* --- Individual Cards (Overrides global 'a' tag settings) --- */
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  /* CRITICAL: These override your massive global 'a' element styles */
+  margin: 0;       
+  font-size: 16px; 
+  color: #111111;    
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background-color: #7e7f9a;
+}
+
+/* --- Circular Image Wrappers (Panda Express Style) --- */
+.card-image-wrapper {
+  width: 160px; /* Explicit width and height keeps empty images uniform */
+  height: 160px;
+  border-radius: 50%; 
+  overflow: hidden;
+  margin-bottom: 16px;
+  background-color: #f0f0f0; /* Gray placeholder while your 'img' links are empty */
+  border: 3px solid #F7C64A; /* Optional: adds your accent gold ring to matches your theme */
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Card Details --- */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #10291d;
+  text-align: center;
+}
+
+.card-action {
+  font-size: 14px;
+  color: #d62323; /* Modern action accent color */
+  font-weight: 600;
+  text-decoration: none;
 }
