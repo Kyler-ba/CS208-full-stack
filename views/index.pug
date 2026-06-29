@@ -3,17 +3,20 @@ extends layout
 block content
   img(id="header-logo", src=dark_bg_logo)
 
+  //- sidebar button
   img#menu-btn(src=dropdown, alt="Open Menu", style="cursor: pointer;")
 
+  //- sidebar options
   #my-sidebar.sidebar
     a(href="/") Home Page
     a(href="/menu") Our Menu
     a(href="/about") About Us
     a(href="/reviews") Leave a Review
+    a(href="https://doordash.com") Order on Door Dash
 
   .image-container
     img(alt="yummy-donuts" src="https://static.wixstatic.com/media/5eeb56_7be41949f1db41b28aeab91f46c037e8~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5eeb56_7be41949f1db41b28aeab91f46c037e8~mv2.jpg")
-    .overlay-text Serving Greatness Since '09
+    .overlay-text Serving Greatness Since '92
 
   
 block scripts

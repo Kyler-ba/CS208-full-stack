@@ -3,15 +3,39 @@ extends layout
 block content
   img(id="header-logo", src=dark_bg_logo)
 
+  //- sidebar button
   img#menu-btn(src=dropdown, alt="Open Menu", style="cursor: pointer;")
 
+  //- sidebar options
   #my-sidebar.sidebar
     a(href="/") Home Page
     a(href="/menu") Our Menu
     a(href="/about") About Us
     a(href="/reviews") Leave a Review
+    a(href="https://doordash.com") Order on Door Dash
   
   h2 Meet The Team!
-  
+
+  //- Team Row Wrapper Container
+  .team-row
+    //- Left Box Group (Text)
+    .team-info
+      h3 Founder/Manager
+      p.
+        Gustavo founded Downtown Donuts in 1992 with a dream to make the best donuts this town has ever #[br]
+        seen. Coming from a humble background, Gustavo spent years mastering the art of classic pastry #[br]
+        dough. Through endless early morning and late nights testing fresh glaze recipes, his dedication turned a small neighborhood bakery into a beloved local staple.
+      h3 Laborer
+      p.
+        Carrying his father's torch, Gustavo Jr is using his youth to infuse the shop with fresh energy#[br]
+        and modern flair. Growing up in the kitchen, he learned the timeless foundations of baking#[br]
+        from his dad while developing an eye for vibrant, trending flavors. Today, he spearheads our artisanal#[br]
+        rotating menu, bridging traditional craftsmanship with the exciting creations of the next generation.
+
+    //- Right Box Group (Image)
+    .team-media
+      img(src="https://assets.dnainfo.com/generated/chicago_photo/2013/08/liqat-sheikh-13769972216669.jpg/extralarge.jpg", alt="Gustavo")
+      img(src="https://images.gofundme.com/G43KQAoqY8qGkwhefThvJax6viU=/1200x900/https://d2g8igdw686xgo.cloudfront.net/105041387_178154370879653_r.jpg", alt="Gustavo Jr")
+
 block scripts
   script(src="/javascripts/sidemenu.js")

@@ -1,0 +1,82 @@
+extends layout
+
+block content
+  img(id="header-logo", src=dark_bg_logo)
+
+  //- sidebar button  
+  img#menu-btn(src=dropdown, alt="Open Menu", style="cursor: pointer;")
+
+  //- sidebar options  
+  #my-sidebar.sidebar
+    a(href="/") Home Page
+    a(href="/menu") Our Menu
+    a(href="/about") About Us
+    a(href="/reviews") Leave a Review
+    a(href="https://doordash.com") Order on Door Dash
+
+  .menu-container
+    h1.menu-heading Customer Reviews
+
+    //panel to submit a review
+    .review-form-panel
+      h2 We Value Your Feedback!
+      form(action="/submit-review", method="POST")
+        div.form-group
+          label(for="name") Your Name:
+          input(type="text", name="name", placeholder="Enter your name", required=true)
+        div.form-group
+          label(for="comment") Your Feedback:
+          textarea(name="comment", rows="4", placeholder="Tell us about your donut experience...", required=true)
+        button(type="submit") Submit Review
+
+    //provides review functionality
+    .reviews-feed
+      if reviewsList && reviewsList.length > 0
+        each item in reviewsList
+          .review-card(id=`card-${item.id}`)
+            .review-header
+              span.reviewer-name= item.name
+              span.review-date= new Date(item.created_at).toLocaleDateString()
+            
+            //- display comment text 
+            p.review-body(id=`text-${item.id}`)= item.comment
+            
+            //- Text area to edit review 
+            form.edit-form(id=`edit-form-${item.id}`, action="/edit-review", method="POST", style="display: none; margin-top: 10px;")
+              input(type="hidden", name="id", value=item.id)
+              textarea(name="comment", rows="3", style="width: 100%; margin-bottom: 5px; padding: 5px;")= item.comment
+              .action-buttons
+                button.save-btn(type="submit") Save
+                button.cancel-btn(type="button", onclick=`toggleEdit(${item.id})`) Cancel
+
+            //action buttons
+            .review-controls(id=`controls-${item.id}`, style="margin-top: 15px; display: flex; gap: 10px;")
+              //edit button
+              button.edit-btn(type="button", onclick=`toggleEdit(${item.id})`) Edit
+              
+              //allows deleting of reviews
+              form(action="/delete-review", method="POST", onsubmit="return confirm('Are you sure you want to delete this review?');" style="margin: 0 !important;")
+                input(type="hidden", name="id", value=item.id)
+                button.delete-btn(type="submit") Delete
+      else
+        p.no-reviews No reviews shared yet. Be the first to leave a review above!
+
+block scripts
+  script(src="/javascripts/sidemenu.js")
+  // Inline toggle script required to switch between text and form modes
+  script.
+    function toggleEdit(id) {
+      const textBlock = document.getElementById(`text-${id}`);
+      const editForm = document.getElementById(`edit-form-${id}`);
+      const controlButtons = document.getElementById(`controls-${id}`);
+      
+      if (editForm.style.display === 'none') {
+        editForm.style.display = 'block';
+        textBlock.style.display = 'none';
+        controlButtons.style.display = 'none';
+      } else {
+        editForm.style.display = 'none';
+        textBlock.style.display = 'block';
+        controlButtons.style.display = 'flex';
+      }
+    }

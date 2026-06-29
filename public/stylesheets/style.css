@@ -1,3 +1,4 @@
+/*sets font family to match requirement*/
 * {
   font-family: 'Montserrat Regular';
 }
@@ -12,15 +13,21 @@ body {
 }
 
 a {
-  color: #00B7FF;
   margin: 30px;
   font-size: 40px;
 }
 
 
+/* ==========================================
+   Home Page Customization
+   ========================================== */
+
 #header-logo{
   display: block;
   position:fixed;
+
+  top: 0;
+  left:0;
   max-width: 100%;
   max-height: 125px;
 
@@ -36,6 +43,8 @@ img[alt="Open Menu"]{
   position: fixed;
   display: block;
 
+  top:0;
+  left:0;
   margin-top: 30px;
   margin-left: 35px;
 
@@ -45,6 +54,11 @@ img[alt="Open Menu"]{
   z-index: 1;
 } 
 
+/* ==========================================
+   Side Bar Customization
+   ========================================== */
+
+/* general layout of sidebar*/
 .sidebar {
   height: 100%;
   width: 0; /* Starts hidden */
@@ -96,38 +110,36 @@ img[alt="Open Menu"]{
 
 .image-container img {
   display: block;
-  width: 100%; /* Or your desired width */
+  width: 100%; 
   height: 811px;
   z-index: 2;
 }
 
 .overlay-text {
   position: absolute;
-  top: 50%;          /* Positions the text vertically */
-  left: 50%;         /* Positions the text horizontally */
-  transform: translate(-50%, -50%); /* Perfectly centers the text */
-  color: #F7F7F7;      /* Ensures the text is visible */
+  top: 50%;         
+  left: 50%;        
+  transform: translate(-50%, -50%); 
+  color: #F7F7F7;     
   font-size: 71px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* Helps text stand out */
   background-color: #7e7f9a50;
 }
 
-h2{
-  font-size: 50px;
-  text-decoration: underline;
-  text-align: center;
-}
+/* ==========================================
+   Menu Page Customization
+   ========================================== */
 
-/* --- Content Layout Positioning --- */
+/*Contains all menu items*/
 .menu-container {
   max-width: 1200px;
-  /* 160px top margin ensures it sits perfectly below your 125px fixed header */
   margin: 0px auto 40px auto; 
   padding: 150px 20px;
   box-sizing: border-box;
 }
 
+/*Menu header text*/
 .menu-heading {
   margin-top: 0;
   font-size: 36px;
@@ -137,7 +149,7 @@ h2{
   text-align: center;
 }
 
-/* --- The Grid Layout --- */
+/*Grid layout of menu items*/
 .menu-grid {
   display: grid;
   /* Automatically fits as many cards per row as space allows */
@@ -145,7 +157,7 @@ h2{
   gap: 30px;
 }
 
-/* --- Individual Cards (Overrides global 'a' tag settings) --- */
+/* styles individual menu items*/
 .menu-card {
   display: flex;
   flex-direction: column;
@@ -157,27 +169,27 @@ h2{
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   
-  /* CRITICAL: These override your massive global 'a' element styles */
   margin: 0;       
   font-size: 16px; 
   color: #111111;    
 }
 
+/*highlights menu items when hover*/
 .menu-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   background-color: #7e7f9a;
 }
 
-/* --- Circular Image Wrappers (Panda Express Style) --- */
+/* circular image wrappers*/
 .card-image-wrapper {
-  width: 160px; /* Explicit width and height keeps empty images uniform */
+  width: 160px; 
   height: 160px;
   border-radius: 50%; 
   overflow: hidden;
   margin-bottom: 16px;
-  background-color: #f0f0f0; /* Gray placeholder while your 'img' links are empty */
-  border: 3px solid #F7C64A; /* Optional: adds your accent gold ring to matches your theme */
+  background-color: #f0f0f0; 
+  border: 3px solid #F7C64A; 
 }
 
 .card-image-wrapper img {
@@ -186,7 +198,7 @@ h2{
   object-fit: cover;
 }
 
-/* --- Card Details --- */
+/*basic card styles*/
 .card-info {
   display: flex;
   flex-direction: column;
@@ -194,6 +206,7 @@ h2{
   gap: 6px;
 }
 
+/*menu item name*/
 .card-title {
   font-size: 18px;
   font-weight: bold;
@@ -201,9 +214,197 @@ h2{
   text-align: center;
 }
 
+/*view more text*/
 .card-action {
   font-size: 14px;
-  color: #d62323; /* Modern action accent color */
+  color: #F7C64A; 
   font-weight: 600;
   text-decoration: none;
+}
+
+/* ==========================================
+   About Page Customization
+   ========================================== */
+h2{
+  margin-top: 200px;
+  font-size: 50px;
+  text-decoration: underline;
+  text-align: center;
+}
+
+h3{
+  font-size: 40px;
+  text-decoration: underline;
+}
+
+/* Container holding the text on the left and image on the right */
+.team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 60%;         
+  margin: 50px auto;      
+}
+
+/* Groups the text labels to reset default margins cleanly */
+.team-info h3 {
+  margin: 0 0 20px 250px;
+}
+
+.team-info p {
+  margin-bottom: 200px;
+  font-size: 20px;
+}
+
+/*customizes pictures of staff*/
+.team-media img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;    
+  display: block;
+}
+
+/* ==========================================
+   Reviews Page Customization
+   ========================================== */
+/* Styling panels for forms */
+.review-form-panel {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.review-form-panel h2 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #10291d;
+  text-align: center;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #10291d;
+}
+
+.form-group input, .form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.review-form-panel button {
+  background-color: #10291d;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  border-bottom: 3px solid #F7C64A;
+}
+
+.review-form-panel button:hover {
+  background-color: #1b4431;
+}
+
+/* Reviews Feed Output List */
+.reviews-feed {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: #fff;
+  border-left: 5px solid #F7C64A;
+  padding: 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 0 !important;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  color: #10291d;
+  font-size: 18px;
+}
+
+.review-date {
+  color: #888;
+  font-size: 12px;
+}
+
+.review-body {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/*when database empty*/
+.no-reviews {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* Styling button elements for review settings panels */
+.edit-btn, .cancel-btn {
+  background-color: #7e7f9a;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn {
+  background-color: #d62323;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-btn {
+  background-color: #10291d;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.edit-btn:hover, .cancel-btn:hover, .delete-btn:hover, .save-btn:hover {
+  opacity: 0.9;
 }

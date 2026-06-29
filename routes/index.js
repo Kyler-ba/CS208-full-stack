@@ -3,7 +3,7 @@ var router = express.Router();
 router.get('/favicon.ico', (req, res) => res.status(204).end()); 
 
 
-/* GET home page. */
+/* Directs User to Home page */
 router.get('/', function(req, res, next){
   try {
     req.db.query('SELECT * FROM todos;', (err, results) => {
@@ -22,7 +22,7 @@ router.get('/', function(req, res, next){
   }
 });
 
-/* GET menu page. */
+/* Directs User to Menu page */
 router.get('/menu', function(req, res, next) {
   try {
     // Render the 'menu.pug' file located in your views folder
@@ -37,9 +37,9 @@ router.get('/menu', function(req, res, next) {
   }
 });
 
+/* Directs User to About page */
 router.get('/about', function(req, res, next) {
   try {
-    // Render the 'menu.pug' file located in your views folder
     res.render('about', { 
       title: 'About Us - Downtown Donuts',
       dark_bg_logo: '/images/dark_bg_logo.png',
@@ -51,55 +51,75 @@ router.get('/about', function(req, res, next) {
   }
 });
 
+/* Directs User to Reviews page */
 router.get('/reviews', function(req, res, next) {
-  try {
-    // Render the 'menu.pug' file located in your views folder
+  req.db.query('SELECT * FROM reviews ORDER BY created_at DESC;', (err, results) => {
+    if (err) {
+      console.error('Error fetching reviews:', err);
+      return res.status(500).send('Error loading reviews');
+    }
     res.render('reviews', { 
-      title: 'reviews - Downtown Donuts',
+      title: 'Reviews - Downtown Donuts',
       dark_bg_logo: '/images/dark_bg_logo.png',
-      dropdown: '/images/dropdown.png'
+      dropdown: '/images/dropdown.png',
+      reviewsList: results 
+    });
+  });
+});
+
+/* allows user to submit a review*/
+router.post('/submit-review', function(req, res, next) {
+  const { name, comment } = req.body;
+  try {
+    // Insert form input fields directly into the table rows
+    req.db.query('INSERT INTO reviews (name, comment) VALUES (?, ?);', [name, comment], (err, results) => {
+      if (err) {
+        console.error('Error saving review:', err);
+        return res.status(500).send('Error saving review');
+      }
+      console.log('Review saved successfully:', results);
+      
+      // Refresh page to instantly show the newly added post
+      res.redirect('/reviews');
     });
   } catch (error) {
-    console.error('Error loading reviews page:', error);
-    res.status(500).send('Error loading reviews page');
+    console.error('Error adding review:', error);
+    res.status(500).send('Error adding review');
   }
 });
 
-router.post('/create', function (req, res, next) {
-    const { task } = req.body;
-    try {
-      req.db.query('INSERT INTO todos (task) VALUES (?);', [task], (err, results) => {
-        if (err) {
-          console.error('Error adding todo:', err);
-          return res.status(500).send('Error adding todo');
-        }
-        console.log('Todo added successfully:', results);
-        // Redirect to the home page after adding
-        res.redirect('/');
-      });
-    } catch (error) {
-      console.error('Error adding todo:', error);
-      res.status(500).send('Error adding todo');
-    }
-});
-
-router.post('/delete', function (req, res, next) {
-    const { id } = req.body;
-    try {
-      req.db.query('DELETE FROM todos WHERE id = ?;', [id], (err, results) => {
-        if (err) {
-          console.error('Error deleting todo:', err);
-          return res.status(500).send('Error deleting todo');
-        }
-        console.log('Todo deleted successfully:', results);
-        // Redirect to the home page after deletion
-        res.redirect('/');
+/* Allows for review deletion */
+router.post('/delete-review', function (req, res, next) {
+  const { id } = req.body;
+  try {
+    req.db.query('DELETE FROM reviews WHERE id = ?;', [id], (err, results) => {
+      if (err) {
+        console.error('Error deleting review:', err);
+        return res.status(500).send('Error deleting review');
+      }
+      res.redirect('/reviews');
     });
-    }catch (error) {
-        console.error('Error deleting todo:', error);
-        res.status(500).send('Error deleting todo:');
-    }
+  } catch (error) {
+    console.error('Error deleting review:', error);
+    res.status(500).send('Error deleting review');
+  }
 });
 
+/* Allows the user to edit the reviews */
+router.post('/edit-review', function (req, res, next) {
+  const { id, comment } = req.body;
+  try {
+    req.db.query('UPDATE reviews SET comment = ? WHERE id = ?;', [comment, id], (err, results) => {
+      if (err) {
+        console.error('Error updating review:', err);
+        return res.status(500).send('Error updating review');
+      }
+      res.redirect('/reviews');
+    });
+  } catch (error) {
+    console.error('Error updating review:', error);
+    res.status(500).send('Error updating review');
+  }
+});
 
 module.exports = router;

@@ -3,14 +3,18 @@ extends layout
 block content
   img(id="header-logo", src=dark_bg_logo)
 
+  //- sidebar button
   img#menu-btn(src=dropdown, alt="Open Menu", style="cursor: pointer;")
 
+  //- sidebar options
   #my-sidebar.sidebar
     a(href="/") Home Page
     a(href="/menu") Our Menu
     a(href="/about") About Us
     a(href="/reviews") Leave a Review
+    a(href="https://doordash.com") Order on Door Dash
 
+  //- menu item details
   -
     var menuItems = [
       {name: 'Maple Bacon', img: 'https://www.thespruceeats.com/thmb/s_nLo-fq7txaKZ-SC96_m94JjhY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MapleBaconDonutHERO-318c27bf6f3a4449847447cdbe2cd5e4.jpg'},
@@ -25,6 +29,7 @@ block content
       {name: 'Signature Frpppucino', img: 'https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2015/10/Homemade-Frappuccino-H1.jpg?fit=300%2C450&ssl=1'}
     ]
 
+  //- gets menu items and displays them in cards
   .menu-container
     h1.menu-heading Our Menu
     

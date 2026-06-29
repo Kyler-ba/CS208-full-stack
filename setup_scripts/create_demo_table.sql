@@ -2,8 +2,10 @@ CREATE DATABASE IF NOT EXISTS cs208demo;
 
 USE cs208demo;
 
-CREATE TABLE IF NOT EXISTS todos (
+/* Creates the reviews database */
+CREATE TABLE IF NOT EXISTS reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    task VARCHAR(255) NOT NULL,
-    completed BOOLEAN DEFAULT FALSE
+    name VARCHAR(255) NOT NULL,
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
